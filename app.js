@@ -1,3 +1,12 @@
+
+
+const asyncFn = async () => {
+  console.log("calling promise in asyncFn");
+  console.log("Getting Data in asyncFn");
+};
+
+console.log(asyncFn())
+
 const promise = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve("This is my resolved data");
@@ -11,10 +20,8 @@ const run = async () => {
   console.log("Getting Data");
 };
 
-
 run();
-console.log("Bottom Of the code")
-
+console.log("Bottom Of the code");
 
 // calling promise
 // Bottom Of the code

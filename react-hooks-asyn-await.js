@@ -10,27 +10,19 @@ const useAxiosAPI = (initialState = []) => {
         url,
         params,
         payload,
-        isToast,
         onSuccess,
         onError,
         isForm,
-        customSuccessMsg = null,
-        customErrorMsg = null,
     }) => {
         setState((prevState) => ({ ...prevState, loading: true, error: null }));
         try {
             const response = await axios({
                 method: method,
                 url,
-                data: isForm ? objectToForm(payload) : payload,
+                data: payload,
                 params: params,
             });
-            isToast &&
-                toast.success(
-                    t(customSuccessMsg) ||
-                        response?.data?.message ||
-                        t("Saved Successfully")
-                );
+    
             setState((prevState) => ({
                 ...prevState,
                 loading: false,
@@ -40,15 +32,7 @@ const useAxiosAPI = (initialState = []) => {
         } catch (error) {
             if (typeof onError === "function") {
                 onError?.(error);
-            } else {
-                isToast &&
-                    toast.error(
-                        error?.response?.data?.message ||
-                            error?.message ||
-                            t(customErrorMsg) ||
-                            t("Something went wrong")
-                    );
-            }
+            } 
             setState((prevState) => ({
                 ...prevState,
                 loading: false,
