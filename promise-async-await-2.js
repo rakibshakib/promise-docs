@@ -5,14 +5,14 @@ const promiseTour = () => {
         if (isWeekend) {
             const tourData = {
                 name: "Weekend tour",
-                perPersonBudget: 5000,
+                perPersonBudget: 6000,
             };
             resolve(tourData);
         } else {
             reject("We will not go on Weekend tour");
         }
     });
-}
+};
 
 const readyBaggage = async (tourData) => {
     const baggage = {
@@ -24,7 +24,7 @@ const readyBaggage = async (tourData) => {
         ...tourData,
     };
     return baggage;
-}
+};
 
 const isBudgetFriendlyTour = async (baggage) => {
     const totalBudget = baggage.personalBudget + baggage.perPersonBudget;
@@ -33,17 +33,38 @@ const isBudgetFriendlyTour = async (baggage) => {
     } else {
         throw new Error("This is not a budget friendly tour");
     }
-}
+};
+
+const delay = (message) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (message) {
+                resolve(message);
+            } else {
+                reject("Error");
+            }
+        }, 2000);
+    });
+};
+
+const tempFn = () => {
+    console.log("This is function after promise implementation");
+};
+
+console.log("Promise start");
 
 const planTour = async () => {
     try {
         const tourData = await promiseTour();
         const baggage = await readyBaggage(tourData);
         const message = await isBudgetFriendlyTour(baggage);
-        console.log({ message });
+        const delayedMessage = await delay(message);
+        console.log({ delayedMessage }, "Promise resolved");
     } catch (error) {
         console.log(error);
     }
+    tempFn();
+    console.log("Promise ends");
 };
 
 planTour();

@@ -4,7 +4,7 @@ const promiseTour = new Promise((resolve, reject) => {
     if (isWeekend) {
         const tourData = {
             name: "Weekend tour",
-            perPersonBudget: 5000,
+            perPersonBudget: 6000,
         };
         resolve(tourData);
     } else {
@@ -35,12 +35,34 @@ const isBudgetFriendlyTour = (baggage) => {
     })
 }
 
+const delay = (message) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (message) {
+                resolve(message);
+            } else {
+                reject("Error");
+            }
+        }, 2000);
+    })
+}
+
+const tempFn = () => {
+    console.log("This is function after promise implementation");
+}
+
+console.log("Promise start ");
+
 promiseTour
     .then(readyBaggage)
     .then(isBudgetFriendlyTour)
+    .then(delay)
     .then((message) => {
-        console.log({message});
+        console.log({ message }, "Promise resolved");
     })
     .catch((error) => {
         console.log(error);
     });
+
+tempFn();
+console.log("Promise ends");
