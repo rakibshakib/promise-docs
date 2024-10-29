@@ -1,15 +1,17 @@
-const isWeekend = true;
+const isWeekend = false;
 
 const promiseTour = new Promise((resolve, reject) => {
-    if (isWeekend) {
-        const tourData = {
-            name: "Weekend tour",
-            perPersonBudget: 6000,
-        };
-        resolve(tourData);
-    } else {
-        reject("We will not go on Weekend tour");
-    }
+    const tourData = {
+        name: "Weekend tour",
+        perPersonBudget: 6000,
+    };
+    setTimeout(() => {
+        if (isWeekend) {
+            resolve(tourData);
+        } else {
+            reject("We will not go on Weekend tour");
+        }
+    }, 2000);
 });
 
 const readyBaggage = (tourData) => {
