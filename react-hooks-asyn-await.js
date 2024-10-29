@@ -1,4 +1,4 @@
-const useAxiosAPI = (initialState = []) => {
+const usePromiseAsyncAwait = (initialState = []) => {
     const [state, setState] = useState({
         data: initialState,
         error: null,
@@ -58,4 +58,4 @@ const useAxiosAPI = (initialState = []) => {
     };
 };
 
-export default useAxiosAPI;
+export default usePromiseAsyncAwait;
