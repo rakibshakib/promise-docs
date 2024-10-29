@@ -23,7 +23,3 @@ const run = async () => {
 run();
 console.log("Bottom Of the code");
 
-// calling promise
-// Bottom Of the code
-// This is my resolved data
-// Getting Data
