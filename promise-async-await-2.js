@@ -1,5 +1,6 @@
 const isWeekend = true;
 
+// executor function
 const promiseTour = () => {
     return new Promise((resolve, reject) => {
         if (isWeekend) {
