@@ -1,4 +1,4 @@
-const isWeekend = false;
+const isWeekend = true;
 
 const promiseTour = new Promise((resolve, reject) => {
     const tourData = {
